@@ -1,0 +1,246 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  border-left: 5px solid green;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-size: 1.5rem;
+  color: #333;
+  line-height: 1.8;
+}
+@media print, screen and (min-width: 768px) {
+  body {
+    font-size: 16px;
+    font-size: 1.6rem;
+  }
+}
+
+section:nth-of-type(n + 2) {
+  margin-top: 180px;
+}
+
+figure, figcaption {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+h2 {
+  border-bottom: 1px solid #ddd;
+}
+
+h3 {
+  margin-top: 100px;
+}
+
+h4 {
+  position: relative;
+  margin-top: 50px;
+  padding-left: 35px;
+  font-size: 1.1em;
+}
+h4::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background-color: #333;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a[target=_blank] {
+  position: relative;
+  display: inline-block;
+  padding-right: 23px;
+}
+a[target=_blank]::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+strong {
+  color: #c10000;
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+mark {
+  background-color: inherit;
+}
+
+ul, ol, dl {
+  margin: 35px 0;
+}
+ul > li, ol > li, dl > li {
+  margin: 30px 0;
+}
+
+dl {
+  padding-left: 20px;
+}
+dl > dd + dt {
+  margin-top: 20px;
+}
+
+pre {
+  margin: 25px 0;
+}
+pre > code {
+  display: block;
+  margin: 0;
+  padding: 10px 15px;
+  white-space: pre-wrap;
+}
+pre > code mark {
+  color: yellow;
+}
+
+code {
+  margin: 0 2px;
+  padding: 3px 5px;
+  font-family: inherit;
+  background-color: #364549;
+  color: #e3e3e3;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 90%;
+  white-space: nowrap;
+}
+
+blockquote {
+  margin: 25px 0;
+  padding-left: 2rem;
+  border-left: solid #777 7px;
+  color: #666;
+}
+blockquote > p {
+  margin: 0;
+}
+
+q::before, q::after {
+  content: '"';
+}
+
+dfn {
+  font-style: inherit;
+  font-weight: bold;
+}
+
+sup {
+  margin: 0 1px;
+}
+
+.l-wrapper {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.l-header,
+.l-footer {
+  padding: 10px 20px;
+}
+
+.l-main {
+  padding: 150px 20px;
+}
+
+.p-toc {
+  list-style: none;
+}
+.p-toc ol, .p-toc li {
+  margin: 10px 0;
+  list-style: none;
+}
+
+.p-important {
+  margin: 30px 0;
+  padding: 20px 30px;
+  background-color: #ffedf0;
+}
+.p-important__title {
+  display: block;
+  font-size: 20px;
+}
+
+.p-note {
+  position: relative;
+  max-width: 95%;
+  margin: 40px auto;
+  padding: 15px 25px;
+  background-color: #dfd;
+}
+.p-note::before {
+  content: "Note";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  display: inline-block;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  background-color: green;
+}
+.p-note__title {
+  color: green;
+}
+
+.p-example {
+  padding: 0 0 0 10px;
+  list-style: none;
+  color: #000;
+}
+.p-example > li {
+  position: relative;
+  padding: 15px 25px;
+  background-color: #efefef;
+}
+.p-example > li::before {
+  content: "Example";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  display: inline-block;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #333;
+}
+
+#noBlock-element {
+  margin: 25px 0;
+  text-align: start;
+}
+
+.l-footer {
+  font-size: 13px;
+  font-size: 1.3rem;
+}
+
+.u-mt {
+  margin-top: 100px;
+}

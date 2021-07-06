@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クラス名のドキュメント</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="https://kit.fontawesome.com/1f3bba6d72.js" crossorigin="anonymous" defer></script>
+</head>
+<body>
+  <div class="l-wrapper">
+    <header class="l-header">
+      <h1>クラス名命名に関するドキュメント</h1>
+      <p>クラス名の命名方法に関してまとめたページです。</p>
+        <h2 class="u-mt">目次</h2>
+        <ol class="p-toc">
+          <li><a href="#hd1"><span>0. </span>はじめに</a></li>
+          <li>
+            <a href="#hd2"><span>1. </span>前提</a>
+            <ol>
+              <li><a href="#hd2-1"><span>1-1. </span>キャメルケースで記述すること</a></li>
+              <li><a href="#hd2-2"><span>1-2. </span>名前に意味を持たせること</a></li>
+              <li><a href="#hd2-3"><span>1-3. </span>すべてのクラス名にはプレフィックス（接頭辞）をつけること</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#hd3"><span>2. </span>FLOCSS</a>
+            <ol>
+              <li><a href="#hd3-1"><span>2-1. </span>概要</a></li>
+              <li><a href="#hd3-2"><span>2-2. </span>Foundation</a></li>
+              <li><a href="#hd3-3"><span>2-3. </span>Layput</a></li>
+              <li><a href="#hd3-4"><span>2-4. </span>Component</a></li>
+              <li><a href="#hd3-5"><span>2-5. </span>Project</a></li>
+              <li><a href="#hd3-6"><span>2-6. </span>Utility</a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#hd4"><span>3. </span>BEM</a>
+            <ol>
+              <li><a href="#hd4-1"><span>3-1. </span>概要</a></li>
+              <li><a href="#hd4-2"><span>3-2. </span>命名方法</a></li>
+              <li><a href="#hd4-3"><span>3-3. </span>Block</a></li>
+              <li><a href="#hd4-4"><span>3-4. </span>Element</a></li>
+              <li><a href="#hd4-5"><span>3-5. </span>Modifier</a></li>
+            </ol>
+          </li>
+          <li><a href="#hd5"><span>4. </span>さいごに</a></li>
+          <li><a href="#hd6"><span>5. </span>参考サイト</a></li>
+        </ol>
+    </header>
+    <main class="l-main">
+      <section>
+        <h2 id="hd1">0. はじめに</h2>
+        <div class="p-important">
+          <strong class="p-important__title">なぜコーディング規約があるのか？</strong>
+          <p>
+            いかなる現場においてもコーディングに関するルールが定められています。このルールを「<b>コーディング規約</b>」「<b>ドキュメント</b>」「<b>README（リードミー）</b>」などと呼びますが、プロジェクトにアサインされたメンバーが一人一人これらのルールに準拠しなければ、プロジェクト全体の保守性・可読性が失われてしまう恐れがあるため、非常に重要なものです。
+          </p>
+          <p>
+            担当講師から色々指摘をされ面倒だと感じることもあるかも知れませんが、ルールに準拠する練習だと思い頑張っていきましょう。
+          </p>
+        </div>
+        <p>このページでは以下の事柄に関してまとめられています。</p>
+        <ol>
+          <li>命名に際しての前提</li>
+          <li><b>FLOCSS</b>について</li>
+          <li><b>BEM</b>について</li>
+        </ol>
+        <p>
+          当然これらの内容は公式のドキュメントを参照することが一番確実ですし、調べれば先人方のありがたい文書がたくさん出てくるのですが、当ページではカリキュラム視点でまとめていきます。
+        </p>
+        <p>
+          内容にはある程度当ページの著者の恣意的な考えが含まれます。すべてを鵜呑みにするのではなく、公式ドキュメントないしご自身で調べた様々なサイトの意見を取り入れることが大事です。
+        </p>
+        <p>
+          また、当ページ自体に適用されているスタイルシートを参考にすることはお勧めしません。カリキュラム的に怒られるようなスタイルの当て方をしていますので。。。<sup id="footref1"><a href="#foot1">1</a></sup>
+        </p>
+      </section>
+      <section>
+        <h2 id="hd2">1. 前提</h2>
+        <p>クラス名の命名に際して何点か前提となる規則があります。</p>
+        <h3 id="hd2-1">1-1. キャメルケースで記述すること</h3>
+        <p>
+          名前が２単語以上となる場合は、２単語目の頭文字を大文字にして記述します。このような記述の方法を<em>キャメルケース</em>と呼びます<sup id="footref2"><a href="#foot2">2</a></sup>。
+        </p>
+        <pre><code><span>.l-sectionWrapper</span><br><span>.p-header__navList</span></code></pre>
+        <h3 id="hd2-2">1-2. 名前に意味を持たせること</h3>
+        <p>
+          その要素がどのような要素なのか、どのような役割なのかある程度伝わるような命名を行う必要があります。<br>
+          連番などは意味が伝わらないため不適です。
+        </p>
+        <pre><code><span>// OK : 写真のリストであることがわかる</span><br><span>.p-photoList</span><br><br><span>// NG : 連番は不適</span><br><span>.p-section__one</span></code></pre>
+        <div class="p-note">
+          <p class="p-note__title"><em>よくある間違い</em></p>
+          <ul>
+            <li>
+              <p>名前に「<i>container</i>」「<i>contents</i>」を使ってしまう</p>
+              <p>
+                コンテナもコンテンツもクラス名に使用することは不適です。コンテナが何を意味するのかレビュアーが判断できないからです。要素を包含するための要素であるなら、「<i>wrapper</i>」という命名の方が適しています。<br>また、言ってしまえばページ上に存在する全ては&thinsp;"コンテンツ"&thinsp;ですので、<i>contents</i>という命名も不適です。そのコンテンツ自身がどんな要素なのかを表すような命名を行いましょう。
+              </p>
+            </li>
+            <li>
+              <p id="example01">色や位置などを指定するような命名をしてしまう</p>
+              <p>
+                クラス名に「<i>red</i>」「<i>green</i>」などの色を指定したり、「<i>left</i>」「<i>right</i>」などの位置を指定するような命名は不適です。後々にその色や位置が変更となった場合、cssの書き換えだけではなくhtmlごと書き換える必要が生じてしまう上、色などは受け手によって表現が変わってくる可能性があるためです。
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3 id="hd2-3">1-3. すべてのクラス名にはプレフィックス（接頭辞）をつけること</h3>
+        <p>すべてのクラス名には<a href="#hd3">後述する</a><mark>FLOCSS</mark>に則り、「<code>l-</code>、<code>c-</code>、<code>p-</code>、<code>u-</code>」の4つのいずれかのプレフィックスがつきます。例外はありません。</p>
+      </section>
+      <section>
+        <h2 id="hd3">2. FLOCSS</h2>
+        <p>
+          CSS設計に際する設計思想のこと。<br>
+          プログラミング言語に限らず、何かしらを設計する際には必ず設計のルールが必要になります。そのルールを定義する際のもととなる概念、基本原則のことを設計思想といいます。
+        </p>
+        <h3 id="hd3-1">2-1. 概要</h3>
+        <p>レイヤーを役割ごとに大きく3つ、そこから細かく5つに分類し構成されます。</p>
+        <pre><code><span>FLOCSS</span><br><span>├ Foundation</span><br><span>├ Layout</span><br><span>└ Object</span><br><span>  ├ Component</span><br><span>  ├ Project</span><br><span>  └ Utility</span><br></code></pre>
+        <p>
+          Foundation以外に分類されるレイヤーのクラス名の先頭に「<code>l-</code>、<code>c-</code>、<code>p-</code>、<code>u-</code>」といったプレフィックスをつけます。
+        </p>
+        <p>
+          公式ドキュメントは<a href="https://github.com/hiloki/flocss/blob/master/README.md" target="_blank">こちら</a>です。
+        </p>
+        <h3 id="hd3-2">2-2. Foundation</h3>
+        <p>ページ全体に関する下地的なスタイルを定義するレイヤーのこと。<br>公式では以下のように定められています。</p>
+        <blockquote cite="https://github.com/hiloki/flocss/blob/master/README.md#foundation">
+          <p>（中略）<br>ブラウザのデフォルトスタイルの初期化や、プロジェクトにおける基本的なスタイルを定義します。</p>
+        </blockquote>
+        <p>今カリキュラムにおいては、要素のタグに直接スタイルをあてることはこのFoundationをのぞいて禁止されています。よって、body, imgなどの要素そのものにスタイルを当てる場合にはFoundationであることを明示するとよいでしょう。</p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <p>以下は一例です：</p>
+            <p>
+              <code>/* == Foundation.css == */</code>というコメントアウトは入れても入れなくても良いですが、レビュアーにFoundationの記述だということが分かるような工夫は必要です。<br>
+              また、これらのスタイルはCSSファイルの先頭に記述するべきです。<sup id="footref3"><a href="#foot3">3</a></sup>
+            </p>
+            <p>
+              <pre><code><span>/* ======== Foundation.css ======== */</span><br><span>body {</span><br><span>  font-size: 16px;</span><br><span>  color: #333;</span><br><span>}</span><br><br><span>img {</span><br><span>  width: 100%;</span><br><span>  height: auto;</span><br><span>  object-fit: cover;</span><br><span>}</span><br></code></pre>
+            </p>
+          </li>
+        </ul>
+
+        <h3 id="hd3-3">2-3. Layout</h3>
+        <p>ページを構成する枠組みを定義するレイヤーのこと。<br>公式では以下のように定められています。</p>
+        <blockquote cite="https://github.com/hiloki/flocss/blob/master/README.md#layout">
+          <p>
+            ページを構成するヘッダーやメインのコンテンツエリア、サイドバーやフッターといったプロジェクト共通のコンテナーブロックのスタイルを定義します。
+          </p>
+        </blockquote>
+        <p><em>あまり使いません。</em>ほとんどが<a href="#hd3-5">後述する</a>Projectで代用できます。</p>
+        <h4>具体例</h4>
+        <ul  class="p-example">
+          <li><p>スティッキーヘッダーを実装する際に<code>.l-header</code>に<code>position: fixed;</code>をあてる。</p></li>
+          <li><p>全ページのmain要素に<code>.l-main</code>クラスを付与し、共通のスタイルをあてる。</p></li>
+          <li><p>ページの横幅の上限を設定するために、div要素で包み<code>max-width</code>プロパティをあてる（当ページでもやってます）。</p></li>
+        </ul>
+        <p><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>要素など、全ページに共通する枠組みにあてるクラス名、というイメージでよいでしょう。</p>
+        <figure>
+          <img src="./assets/img/html-thumb.webp" alt="" width="760px" height="430px">
+          <figcaption>引用元：<cite>https://hartenfeller.dev/</cite></figcaption>
+        </figure>
+        <h3 id="hd3-4">2-4. Component</h3>
+        <p>全ページに共通して、繰り返し使用する要素に用いるレイヤーのこと。<br>公式では以下のように定められています。</p>
+        <blockquote cite="https://github.com/hiloki/flocss/blob/master/README.md#component">
+          <p>再利用できるパターンとして、小さな単位のモジュールを定義します。</p>
+        </blockquote>
+        <p>
+          今カリキュラムにおいてはあまり出番はないでしょう。<br>
+          複数のページにて繰り返し用いられる最小モジュールがComponentとなるのですが、カリキュラムでは単一の<abbr title="ランディングページ">LP</abbr>しか実装しないため、そもそも繰り返し用いる要素がないからです。
+        </p>
+        <p>
+          場所を問わず繰り返し用いられるレイヤーであるため、<em>場所を特定するような命名は不適</em>です。<br>
+          例として、以下のような命名は避けましょう。
+          <pre><code><span>// NG : ヘッダーという場所を特定している</span><br><span>.c-headerLogo</span><br><br><span>// NG : mainでしか使用できないタイトル</span><br><span>.c-mainTitle</span></code></pre>
+        </p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <div>
+              <p>見出しレベルでスタイルが変わるセクションのタイトル：</p>
+              <p>
+                以下の例はbacklogの見出しのスタイルですが、このように見出しレベルによって同じスタイルを定義する際には、見出しそのものをComponentとして定義することができるでしょう。
+              </p>
+              <figure>
+                <img src="./assets/img/backlog-heading.jpg" alt="" width="400px" height="403px">
+                <figcaption>見出しコンポーネントの例</figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p>ボタンコンポーネントの一例：</p>
+              <p>
+                以下は初級カリキュラムresponsive-site課題に登場するボタンですが、このようなモジュールは色々なページで使い回すことが可能であると見受けられるので、Componentとして実装することができるでしょう。
+              </p>
+              <figure>
+                <img src="./assets/img/responsive-btn.jpg" alt="" width="350px" height="223px">
+                <figcaption>ボタンコンポーネントの例</figcaption>
+              </figure>
+            </div>
+          </li>
+        </ul>
+        <div class="p-note">
+          <p class="p-note__title"><em>よくある間違い</em></p>
+          <ul>
+            <li>
+              <div>
+                <p><code>.c-logo</code>や<code>.c-photo</code>のような命名を行ってしまう</p>
+                <p>
+                  ヘッダーのロゴに<code>.c-logo</code>という命名や、写真を表示するimg要素に<code>.c-photo</code>という命名を行う例がよく見受けられますが、これらはComponentの観点では不適です。
+                </p>
+                <p>
+                  例えば企業のロゴ画像がページをまたいで各所に登場し特定のスタイルを当てる必要があったり、写真も同様に様々な場所で同様のスタイルが当たっているimg要素が複数回登場するのであればComponentと見なすことも可能（かもしれない）ですが、基本的には<a href="#hd4-4">後述するように</a>BlockのElementとみなして命名すればよいため、このようなComponentはほとんどないでしょう。
+                </p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p><code>margin</code>をあててしまう</p>
+                <p>
+                  Componentは様々な場所で使われることが想定されるため、どんな場所に配置してもその外部に影響を及ぼさない設計でなければなりません。つまり、<code>margin</code>のようなプロパティをあてることは不適です。
+                </p>
+                <p>
+                  また、公式のドキュメントでは以下のように
+                  <blockquote cite="https://github.com/hiloki/flocss/blob/master/README.md#layout">
+                    <p>
+                      出来る限り、最低限の機能を持ったものとして定義されるべきであり、それ自体が固有の幅や色などの特色を持つことは避けるのが望ましいです。
+                    </p>
+                  </blockquote>
+                  との記述がありますが、今カリキュラムにおいてはこれら固有の幅や色などのプロパティは許容されます。
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <h3 id="hd3-5">2-5. Project</h3>
+        <p>Layout、Component以外のレイヤーのこと。<br>公式では以下のように定められています。</p>
+        <blockquote cite="https://github.com/hiloki/flocss/blob/master/README.md#foundation">
+          <p>プロジェクト固有のパターンであり、いくつかのComponentと、それに該当しない要素によって構成されるものを定義します。</p>
+        </blockquote>
+        <p>
+          今カリキュラムにおいては、<em>ほとんどProjectで実装</em>します。<br>
+          理由は、前述したようにほとんどComponentが登場しないからです。
+        </p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <p>
+              Projectはプロジェクト固有のパターンを表すレイヤーであることから、Componentとは逆に場所を特定するような命名が適しています。
+              <pre><code><span>// aboutページのレイヤー</span><br><span>&lt;article class="p-about"&gt;</span><br><br><span>// ヘッダーのスタイル</span><br><span>&lt;header class="p-header"&gt;</span><br><br><span>// イントロダクションセクションのレイヤー</span><br><span>&lt;section class="p-introduction"&gt;</span></code></pre>
+            </p>
+          </li>
+        </ul>
+        <div class="p-note">
+          <p class="p-note__title"><em>よくある間違い</em></p>
+          <ul>
+            <li>
+              <p>Projectを子要素を持たない単体の要素で実装してしまう</p>
+              <p>
+                Projectは<q>いくつかのComponentと、それに該当しない要素によって構成されるもの</q>と定義されていることから、<em>必ず子要素を持ちます</em>。<br>
+                よって以下のような実装は不適です
+              </p>
+              <pre><code><span>&lt;section&gt;</span><br><span>  &lt;h1 class="p-sectionTitle"&gt;Title&lt;/h1&gt;</span><br><span>  &lt;div&gt;</span><br><span>    ...</span><br><span>  &lt;/div&gt;</span><br><span>&lt;/section&gt;</span><br></code></pre>
+            </li>
+          </ul>
+        </div>
+        <h3 id="hd3-6">2-6. Utility</h3>
+        <p>あるレイヤーのスタイルを無理矢理変更する際に使用するスタイルのこと。<br>公式では以下のように定められています。</p>
+        <blockquote cite="https://github.com/hiloki/flocss/blob/master/README.md#foundation">
+          <p>わずかなスタイルの調整のための便利クラスなどを定義します。</p>
+        </blockquote>
+        <p>
+          すでにスタイルが当たっている要素のスタイルを調整する際に使用します。こちらも今カリキュラムにおいてはあまり出番はないでしょう。<sup id="footref4"><a href="#foot4">4</a></sup>
+        </p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <div>
+              <p>同じようなスタイルのレイヤーの一部だけを変更したい</p>
+              <p>
+                以下例では一度定義した<code>.p-section__title</code>というスタイルを再度使い回す際に、<code>margin-top</code>を追加した例です。
+                <pre><code><span>&lt;section class="p-section"&gt;</span><br><span>  &lt;h2 class="p-section__title"&gt;Title&lt;/h2&gt;</span><br>  ...<br><span>&lt;/section&gt;</span><br>...<br><span>&lt;section class="p-section"&gt;</span><br><span>  &lt;h2 class="p-section__title <mark>u-marginTop--20</mark>"&gt;Title&lt;/h2&gt;</span><br>  ...<br><span>&lt;/section&gt;</span><br></code></pre>
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p>あらかじめ使用されると思われるUtilityスタイルを用意しておく</p>
+              <p>
+                案件によっては便利スタイルとしてUtilityスタイルをあらかじめ様々な種類用意しておくこともあります。
+                <pre><code><span>// utility.css</span><br><span>.u-marginTop--5 {</span><br><span>  margin-top: 5px;</span><br><span>}</span><br><br><span>.u-marginTop--10 {</span><br><span>  margin-top: 10px;</span><br><span>}</span><br><br><span>.u-marginTop--15 {</span><br><span>  margin-top: 15px;</span><br><span>}</span><br><br><span>.u-marginTop--20 {</span><br><span>  margin-top: 20px;</span><br><span>}</span><br><br><span>.u-marginTop--25 {</span><br><span>  margin-top: 25px;</span><br><span>}</span><br><br>...</code></pre>
+              </p>
+              <p>上記例では<code>margin-top</code>だけ提示しましたが、<code>margin-bottom</code>や<code>text-align</code>など様々存在します。</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="hd4">3. BEM</h2>
+        <p>
+          こちらもFLOCSS同様CSS設計に際する設計思想ですが、スタイルのプロパティの種類や要素の登場場所など関してではなく主にクラス名の命名に重きを置いたルールです。
+        </p>
+        <h3 id="hd4-1">3-1. 概要</h3>
+        <p>
+          以下の3つの分類で要素のクラス名を命名していきます。これらの頭文字をとって<i>BEM</i>と呼びます。
+          <dl>
+            <dt><dfn>Block</dfn></dt>
+            <dd>要素の大元となるくくり（Elementの親要素）</dd>
+            <dt><dfn>Element</dfn></dt>
+            <dd>Block要素を構成する要素の一部（Blockの子要素）</dd>
+            <dt><dfn>Modifier</dfn></dt>
+            <dd>上記2つそれぞれの異なるバージョン</dd>
+          </dl>
+        </p>
+        <p>
+          実際にはBEMから派生した<i>MindBEMding</i>と呼ばれる命名方法に準じていますが、大きい違いはないため同じと考えて差し支えありません。本ページでは「BEM」と呼称します。<br>
+          公式ドキュメントは<a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" target="_blank">こちら</a>です（英語）。
+        </p>
+        <h3 id="hd4-2">3-2. 命名方法</h3>
+        <p>
+          BlockとElementをアンダースコア2つでつなぎます。
+          <pre><code>block__element</code></pre>
+        </p>
+        <p>
+          要素の異なるバージョンをModifierを使って表す際は、ハイフン2つでつなぎます。
+          <pre><code>block__element--modifier</code></pre>
+        </p>
+        <p>
+          FLOCSSに準じたプレフィックスをつけ以下のように命名します。
+          <pre><code>p-block__element--modifier</code></pre>
+        </p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <p>具体的に命名した例：</p>
+            <p>
+              大元となるセクションをBlockと定義し、そのBlockの構成要素であるタイトルをElementと定義して命名します。<br>
+              また、セクション内に画像のリストがあると仮定すると、以下のような命名となります。
+              <pre><code><span>&lt;section class="p-section"&gt;</span><br><span>  &lt;h1 class="p-section__title"&gt;Title&lt;/h1&gt;</span><br><span>  &lt;ul class="p-section__imgList"&gt;</span><br><span>    &lt;li&gt;...&lt;/li&gt;</span><br><span>    &lt;li&gt;...&lt;/li&gt;</span><br><span>    &lt;li&gt;...&lt;/li&gt;</span><br><span>  &lt;/ul&gt;</span><br><span>&lt;/section&gt;</span><br></code></pre>
+            </p>
+          </li>
+        </ul>
+        <h3 id="hd4-3">3-3. Block</h3>
+        <p>公式では以下のように定義されています。</p>
+        <blockquote cite="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">
+          <p lang="en">.block represents the higher level of an abstraction or component.</p>
+        </blockquote>
+        <p>より要素として上位、また抽象度も上位であると定義されています。大元の要素、という捉え方で問題ないでしょう。</p>
+        <p>また、そのBlock要素の大きさに制限はありません。<br>小さなコンポーネント要素をBlockと実装するケースも多いです。</p>
+        <p>注意するべき点として<a href="#noBlock-element">後述のElementセクション</a>でも説明しますが、<em>Blockが定義されていない状態でその要素のElementを定義することは不適</em>です。</p>
+        <div class="p-note">
+          <p class="p-note__title"><em>よくある間違い</em></p>
+          <ul>
+            <li>
+              <p>別プレフィックスを同じBlockとして扱ってしまう</p>
+              <p>
+                以下の例では、<code>.l-header</code>というブロックを定義しその配下に<code>.p-header__logo</code>という要素を配置していますが、これは誤った命名です。<code>.l-header</code>と<code>.p-header</code>はBlock自体は同じ名前ですが、<em>プレフィックスが異なる場合は別Blockとみなします</em>。<br>つまりこの場合<code>.p-header</code>というBlockが定義されていないにも関わらず、その養成要素である<code>.p-header__logo</code>という要素を定義してしまっていることになっているため、実装としては不適です。
+                <pre><code><span>&lt;header class="l-header"&gt;</span><br><span>  &lt;img class="p-header__logo" src="./hoge.jpg"&gt;</span><br>  ...<br><span>&lt;/header&gt;</span><br></code></pre>
+                header要素を<code>.p-header</code>と命名するか、<code>.l-header__logo</code>とLayoutの子要素とみなしましょう。
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3 id="hd4-4">3-4. Element</h3>
+        <p>公式では以下のように定義されています。</p>
+        <blockquote cite="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">
+          <p lang="en">.block__element represents a descendent of .block that helps form .block as a whole.</p>
+        </blockquote>
+        <p>Block全体の形成に役立つBlockの子孫、とのことでBlockの子要素でありBlockを形成するための要素であることがわかります。</p>
+
+        <p>
+          ただし、Blockの構成要素はすべてそのBlockのElementとしなければならないわけではなく、<em>Blockの子要素に新たなBlockが配置</em>されていても全く問題ありません（むしろそうでないと実装がとても困難になります）。
+        </p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <p>Blockの子要素にBlockがある例：</p>
+            <pre><code><span>&lt;section class="p-section"&gt;</span><br><span>  &lt;h2 class="p-section__title"&gt;</span>Title&lt;/h2&gt;<br><span>  &lt;p class="p-section__caption"&gt;</span>Caption&lt;/p&gt;<br><span>  &lt;div class="<mark>p-about</mark>"&gt;</span><br><span>    &lt;ul class="p-about__list"&gt;</span><br><span>      &lt;li&gt;...&lt;/li&gt;</span><br><span>      &lt;li&gt;...&lt;/li&gt;</span><br><span>      &lt;li&gt;...&lt;/li&gt;</span><br><span>    &lt;/ul&gt;</span><br><span>  &lt;/div&gt;</span><br><span>&lt;/section&gt;</span><br></code></pre>
+            <p>
+              <code>.p-section</code>Block内に<code>.p-about</code>Blockが配置されています。あくまで一例であり別Blockとみなすか<code>.p-section</code>のElementとみなすかは実装者の裁量によって決定されます。形成するために必要な要素だと考えればElement扱いとして<code>.p-section__about</code>などと命名するとよいでしょう。
+            </p>
+            <p>
+              SCSSを用いる場合はBlockごとにファイルを分割することが多いため（今カリキュラムでもこの方式です）、なるべく同Blockとみなした方がファイル管理はしやすいでしょう。
+            </p>
+          </li>
+          <li>
+            <p>ネストが深くなった例：</p>
+            <p>
+              Blockの要素ないでネストが深くなった場合でも、あくまでBlockの構成要素であればそのBlockのElementです。<br>
+              以下はネストが深いBlock要素のElementの命名の例です。
+            </p>
+            <pre><code><span>&lt;section class="p-section"&gt;</span><br><span>  &lt;div class="p-section__structure"&gt;</span><br><span>    &lt;div class="p-section__inner"&gt;</span><br><span>      &lt;div class="p-section__contextBox"&gt;</span><br><span>        &lt;ul class="p-section__list"&gt;</span><br><span>          &lt;li class="p-section__listItem"&gt;</span><br><span>            &lt;a class="p-section__link" href="dummy"&gt;</span><br><span>            ...</span><br></code></pre>
+            <p>
+              極端な例ではありますが、要素が固有のプロジェクトである<code>.p-section</code>の構成要素である限りそのElementとして扱います。
+            </p>
+          </li>
+          <li>
+            <p>LayoutのElementは枠組みの役割ではない：</p>
+            <p>
+              FLOCSSの定義上Layoutは枠組みの役割を担いますが、その子要素であるElementはプレフィックスは<code>l-</code>ですが枠組みの役割はありません。<br>
+              よって以下のようにheader要素に<code>l-header</code>という命名をした場合、その子要素であるimg要素に<code>l-header__logo</code>という命名をしても問題ありません。<sup id="footref5"><a href="#foot5">5</a></sup>
+            </p>
+            <pre><code><span>&lt;header class="l-header"&gt;</span><br><span>  &lt;img class="l-header__logo" src="./hoge.jpg"&gt;</span><br><span>  ...</span><br><span>&lt;/section&gt;</span><br></code></pre>
+          </li>
+        </ul>
+        <div class="p-note">
+          <p class="p-note__title"><em>よくある間違い</em></p>
+          <ul>
+            <li>
+              <p>Blockを定義せずにそのElemetを定義してしまう</p>
+              <p>ElementはBlockを形成する子要素であることから、必ず親であるBlockの定義が先に必要です。以下はBlockが定義されていないにも関わらずElementを実装してしまっており誤りです。
+              </p>
+              <figure id="noBlock-element">
+                <pre><code><span>&lt;footer class="l-footer"&gt;</span><br><span>  &lt;img class="p-footer__logo" src="./hoge.png"&gt;</span><br><span>  &lt;ul&gt;</span><br><span>    &lt;li class="p-footerList__link"&gt;...&lt;/li&gt;</span><br><span>    &lt;li class="p-footerList__link"&gt;...&lt;/li&gt;</span><br><span>    &lt;li class="p-footerList__link"&gt;...&lt;/li&gt;</span><br><span>  &lt;/ul&gt;</span><br><span>&lt;/section&gt;</span><br></code></pre>
+              </figure>
+            </li>
+            <li>
+              <p>異なるBlockに異なるBlockのElementを配置してしまう</p>
+              <p>
+                Elementはその親Blockの内部にしか配置することはできません。SCSSのファイル管理が複雑になってしまうデメリットもありますので、以下のような例は不適です。
+              </p>
+              <pre><code><span>&lt;section class="p-about"&gt;</span><br><span>  &lt;h2 class="p-about__title"&gt;About Title&lt;/h2&gt;</span><br>  ...<br><span>&lt;/section&gt;</span><br>...<br><span>&lt;section class="p-introduction"&gt;</span><br><span>  &lt;h2 class="<mark>p-about__title</mark>"&gt;Introduction Title&lt;/h2&gt;</span><br>  ...<br><span>&lt;/section&gt;</span><br></code></pre>
+            </li>
+          </ul>
+        </div>
+        <h3 id="hd4-5">3-5. Modifier</h3>
+        <p>公式では以下のように定義されています。</p>
+        <blockquote cite="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/">
+          <p lang="en">.block--modifier represents a different state or version of .block.</p>
+        </blockquote>
+        <p>
+          BlockやElementの異なる状態やバージョンを表しているとのことで、とある要素の若干異なるスタイルを当てる際にModifierで命名します。
+        </p>
+        <h4>具体例</h4>
+        <ul class="p-example">
+          <li>
+            <p>すでに定義されている要素の状態違いを表す命名：</p>
+            <p>以下は状態違いのComponentをModifierで命名した例です。</p>
+            <pre><code><span>.c-btn {</span><br><span>  background-color: inherit;</span><br><span>  border: solid 1px black;</span><br><span>  ...</span><br><span>}</span><br><br><span>.c-btn--disable {</span><br><span>  background-color: gray;</span><br><span>  border: solid 1px gray;</span><br><span>  ... // 以下.c-btnと同じスタイル</span><br><span>}</span><br></code></pre>
+            <p>
+              すでに定義されているボタンコンポーネントの状態違いのスタイルをModifierを用いて命名し実装しています。特定のスタイルのみ変更するような使い方をすることが一般的であり、SCSSでコーディングする場合は<code>@extend</code>構文などを用いると効果的です。
+            </p>
+          </li>
+        </ul>
+        <div class="p-note">
+          <p class="p-note__title"><em>よくある間違い</em></p>
+          <ul>
+            <li>
+              <p>クラス名に色や位置を含めてしまう</p>
+              <p>
+                Modifierといえどクラス名に色や位置を指定する命名を行ってしまうことは、<a href="#example01">前述の通り</a>不適です。色で指定するのではなく、その状態を表す命名にしましょう。<br>
+                上記の例のように、使用不能を表すなら「<i>disable</i>」、強調を表すなら「<i>strong</i>」「<i>emphasize</i>」などのような命名を行いましょう。
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </section>
+      <section>
+        <h2 id="hd5">4. さいごに</h2>
+        <p>
+          これまで示した具体例はすべてあくまでも一例です。実装者・レビュアーの裁量によって命名は変化しますし、良し悪しの判断も変わってきます。なのでレビュアーや他実装者に質問や意見を受けた際に、<em>自分の言葉で実装内容（命名理由など）を説明できるように実装する</em>ことがとても重要です。カリキュラム講師も実装理由ありきで内容を評価しています。
+        </p>
+        <p>
+          また、これまでの内容は今カリキュラムに沿った実装・命名方法をまとめています。案件によって全く変わってきますので、実際の現場に入った際にはメイン実装者の意向やドキュメントを十分に参照し、臨機応変に対応していきましょう。<sup id="footref6"><a href="#foot6">6</a></sup>
+        </p>
+      </section>
+      <section>
+        <h2 id="hd6">5. 参考サイト</h2>
+        <ul>
+          <li><a href="https://github.com/hiloki/flocss/blob/master/README.md" target="_blank">flocss/README.md</a></li>
+          <li><a href="https://qiita.com/super-mana-chan/items/644c6827be954c8db2c0" target="_blank">[CSS設計] 私のためのFLOCSSまとめ</a></li>
+          <li><a href="https://qiita.com/uggds/items/d904b2f9a103c37a25fa" target="_blank">FLOCSSを使ったCSS設計での悩みどころと解決案</a></li>
+          <li><a href="https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/" target="_blank">MindBEMding – getting your head ’round BEM syntax</a></li>
+          <li><a href="https://qiita.com/Takuan_Oishii/items/0f0d2c5dc33a9b2d9cb1" target="_blank">一番詳しいCSS設計規則BEMのマニュアル</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer class="l-footer">
+      <hr>
+      <ol>
+        <li id="foot1">
+          自由に実装・命名している理由ですが、最初からひとりで実装することを想定しているうえ、単一ページのみの実装、将来的にメンテナンスが容易であることなどがあります。<a href="#footref1">↩</a>
+        </li>
+        <li id="foot2">
+          <p>
+            キャメルケース以外にはハイフンで複数単語をつなぐケバブケース（ハイフネーション）という記述方法もあります。<a href="#footref2">↩</a>
+          </p>
+        </li>
+        <li id="foot3">
+          <p>
+            あくまで下地の役割であり、上書きされることが前提だからです。（詳細度が等しい場合）後から記述されたスタイルが優先されるため、Foundationはcssファイルの先頭で読み込まれるべきです。<a href="#footref3">↩</a>
+          </p>
+        </li>
+        <li id="foot4">
+          <p>
+            案件によってはUtilityの使用を禁止しているような規約を定めていることもあるようです。<a href="#footref4">↩</a>
+          </p>
+        </li>
+        <li id="foot5">
+          <p>
+            例としてLayoutで実装していますが、Projectで実装することが一般的であると考えられます。<a href="#footref5">↩</a>
+          </p>
+        </li>
+        <li id="foot6">
+          <p>
+            FLOCSSの"P"が<i>Project</i>ではなく<i>Pages</i>という定義で、あるページのみに用いられるレイヤーを定義するといった案件もあります。<a href="#footref6">↩</a>
+          </p>
+        </li>
+      </ol>
+    </footer>
+  </div>
+  <script>
+    {
+      Array.from(document.getElementsByTagName('i')).forEach((el) => {
+        el.setAttribute('lang', 'en');
+      });
+
+      Array.from(document.getElementsByTagName('a')).forEach((el) => {
+        if(el.getAttribute('target')) {
+          el.setAttribute('rel', 'noopener');
+        }
+      })
+    }
+  </script>
+</body>
+</html>
