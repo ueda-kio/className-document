@@ -1,0 +1,13 @@
+{
+  "name": "class_name",
+  "scripts": {
+    "build": "sass --no-source-map --style=compressed css.scss:docs/assets/style.css",
+    "start": "sass --no-source-map -w css.scss:docs/assets/style.css",
+    "deploy": "npm run build && gh-pages -d docs"
+  },
+  "homepage" : "https://github.com/ueda-kio/className-document",
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "sass": "^1.35.1"
+  }
+}
