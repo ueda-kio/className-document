@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --font-color-normal: #333;
+  --bg-dark: #20252d;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -12,13 +17,21 @@ body {
   font-family: sans-serif;
   font-size: 15px;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--font-color-normal);
   line-height: 1.8;
 
   & {
     @media print, screen and (min-width: 768px) {
       font-size: 16px;
       font-size: 1.6rem;
+    }
+  }
+
+  & {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--bg-dark);
+      color: #dbeaf8;
+      border-left: 5px solid #0086c8;
     }
   }
 }
@@ -59,7 +72,7 @@ h4 {
     display: inline-block;
     width: 30px;
     height: 1px;
-    background-color: #333;
+    background-color: var(--font-color-normal);
   }
 }
 
@@ -83,6 +96,12 @@ a {
       font-weight: 900;
     }
   }
+
+    & {
+    @media (prefers-color-scheme: dark) {
+      color: #5ca3fb;
+    }
+  }
 }
 
 strong {
@@ -96,6 +115,12 @@ em {
 
 mark {
   background-color: inherit;
+
+    & {
+    @media (prefers-color-scheme: dark) {
+      color: #dbeaf8;
+    }
+  }
 }
 
 ul, ol, dl {
@@ -146,6 +171,12 @@ blockquote {
   border-left: solid #777 7px;
   color: #666;
 
+  & {
+    @media (prefers-color-scheme: dark) {
+      color: #ccc;
+    }
+  }
+
   & > p {
     margin: 0;
   }
@@ -195,6 +226,7 @@ sup {
   margin: 30px 0;
   padding: 20px 30px;
   background-color: #ffedf0;
+  color: var(--font-color-normal);
 
   &__title {
     display: block;
@@ -209,6 +241,12 @@ sup {
   padding: 15px 25px;
   background-color: #dfd;
 
+  & {
+    @media (prefers-color-scheme: dark) {
+      background-color: #002533;
+    }
+  }
+
   &::before {
     content: 'Note';
     position: absolute;
@@ -219,17 +257,36 @@ sup {
     color: #fff;
     font-weight: bold;
     background-color: green;
+
+    & {
+      @media (prefers-color-scheme: dark) {
+        background-color: #000;
+      }
+    }
   }
 
   &__title {
     color: green;
+
+    & {
+      @media (prefers-color-scheme: dark) {
+        color: #e0eaff;
+      }
+    }
   }
+
 }
 
 .p-example {
   padding: 0 0 0 10px;
   list-style: none;
   color: #000;
+
+  & {
+    @media (prefers-color-scheme: dark) {
+      // background-color: #002533;
+    }
+  }
 
   & > li {
     position: relative;
@@ -245,7 +302,7 @@ sup {
       padding: 5px;
       color: #fff;
       font-weight: bold;
-      background-color: #333;
+      background-color: var(--font-color-normal);
     }
   }
 }
